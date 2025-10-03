@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Precision Planting — Переобладнання сівалок</title>
+  <meta name="description" content="Переобладнання сівалок під Precision Planting: vSet/vDrive, DeltaForce, FurrowForce, CleanSweep, SmartDepth, 20|20. Квіз і прорахунок за 1 хвилину." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0f2017;--brand:#1f8a4c;--brand2:#2fb36b;--ink:#0b0f0d;--muted:#6b7280;--soft:#f4f8f5;--ring:rgba(31,138,76,.25)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:#f8fbf9;color:var(--ink)}
+    .container{width:min(1200px,100%);margin:0 auto;padding:0 24px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #e6eee9;backdrop-filter:saturate(180%) blur(8px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+    .logo-wrap{display:flex;align-items:center;gap:10px}
+    .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2));font-weight:800;font-size:14px}
+    .brand-text{font-weight:700;font-size:18px;color:#0f2017;white-space:nowrap}
+    .nav nav{display:flex;gap:30px}
+    .nav a{color:#243b2f;text-decoration:none;font-weight:500;font-size:15px;position:relative;padding:6px 4px}
+    .nav a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--brand);transition:width .3s ease}
+    .nav a:hover::after{width:100%}
+    a.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 18px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15px;transition:transform .15s ease, box-shadow .15s ease}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+    .btn.primary:hover{transform:translateY(-1px); box-shadow:0 6px 14px rgba(31,138,76,.25)}
+
+    /* Generic */
+    .section{padding:70px 0}
+    .sec-title{font-size:clamp(22px,3vw,34px);margin:0 0 14px}
+    .sec-sub{color:var(--muted);margin:0 0 26px}
+    .grid{display:grid;gap:16px}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:980px){.cols-3{grid-template-columns:1fr 1fr}}
+    @media(max-width:720px){.cols-3,.cols-2{grid-template-columns:1fr}}
+
+    /* Hero */
+    .pill{display:inline-flex;max-width:max-content;padding:6px 14px;border-radius:999px;background:#0f2a1f;color:#d9f3e6;font-weight:700;font-size:14px;white-space:nowrap;margin-bottom:14px}
+    .hero{background:radial-gradient(1100px 700px at 80% -10%,rgba(47,179,107,.18),transparent 60%),var(--soft);border-bottom:1px solid #e6eee9}
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;padding:70px 0;align-items:center}
+    @media(max-width:980px){.hero-inner{grid-template-columns:1fr;padding:40px 0;gap:24px}}
+    .h1{font-size:clamp(28px,4vw,46px);line-height:1.15;margin:0 0 18px}
+    .lead{color:#3b4d44;margin:0 0 20px;line-height:1.5}
+    .hero-gallery{display:grid;gap:14px}
+    .hero-gallery img{border-radius:12px}
+
+    /* Benefits */
+    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    @media(max-width:980px){.benefits{grid-template-columns:1fr 1fr}}
+    @media(max-width:720px){.benefits{grid-template-columns:1fr}}
+    .benefit{background:#fff;border:1px solid #e6eee9;border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:10px;box-shadow:0 4px 10px rgba(0,0,0,.04)}
+    .benefit-icon{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:grid;place-items:center;font-weight:800;font-size:20px;margin-bottom:12px;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+
+    /* Modules */
+    .module{background:#fff;border:1px solid #e6eee9;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 20px rgba(0,0,0,.04)}
+    .module img{width:100%;height:170px;object-fit:cover}
+    .module .body{padding:16px}
+    .module h3{margin:0 0 6px;font-size:18px}
+    .module p{margin:0;color:#475a52}    /* Process */
+    .step{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+    .step-icon{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:grid;place-items:center;font-weight:700}
+    .step-content b{display:block;margin-bottom:4px}
+
+    /* Cases */
+    .case{background:#fff;border:1px solid #e6eee9;border-radius:16px;padding:18px;box-shadow:0 8px 20px rgba(0,0,0,.04);display:flex;flex-direction:column;gap:12px}
+    .case img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+    .case h3{margin:0 0 6px;font-size:18px}
+    .case p{margin:0;color:#475a52}
+
+    /* Quiz */
+    .quiz{border:1px solid #e6eee9;background:#fff;border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .progress{height:8px;background:#eef2f0;border-radius:999px;overflow:hidden;margin:6px 0 16px}
+    .bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .35s ease}
+    .btn-opt{height:48px;border:1px solid #e6eee9;border-radius:12px;background:#fff;width:100%;text-align:left;padding:0 14px;font-weight:600;cursor:pointer}
+    .btn-opt:hover{background:#f7faf8}
+    .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid #e6eee9;padding:10px 12px;border-radius:999px;user-select:none;cursor:pointer;margin:0 10px 10px 0}
+    .chip.active{background:#e9f7ef;border-color:#cfeedd}
+    .field{display:flex;flex-direction:column;gap:8px}
+    .label{font-size:14px;color:#374151;font-weight:600}
+    .input,.select{border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;font-size:16px;outline:none}
+    .input:focus,.select:focus{box-shadow:0 0 0 6px var(--ring);border-color:var(--brand)}
+    .quiz-actions{display:flex;justify-content:space-between;gap:12px;margin-top:18px}
+
+    /* Contacts */
+    .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+    @media(max-width:980px){.two-col{grid-template-columns:1fr}}
+    #contacts .card{padding:20px;border-radius:16px;background:#fff;border:1px solid #e6eee9;box-shadow:0 8px 20px rgba(0,0,0,.04)}
+    #contacts .grid.cols-2{gap:12px}
+
+    /* Footer */
+    footer{padding:28px 0;background:#0f2a1f;color:#d9f3e6;border-top:1px solid #103224}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="logo-wrap"><div class="logo">PP</div><span class="brand-text">Precision Planting</span></div>
+      <nav>
+        <a href="#modules">Модулі</a>
+        <a href="#process">Як працюємо</a>
+        <a href="#quiz">Квіз</a>
+        <a href="#contacts">Контакти</a>
+      </nav>
+      <a class="btn primary" href="#quiz">Розрахунок</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="pill">Переобладнання сівалок</span>
+        <h1 class="h1">Точний висів із Precision Planting = більше врожаю, менше втрат</h1>
+        <p class="lead">Модернізуємо вашу сівалку: контроль глибини, відсічка рядків, внесення добрив і аналітика в реальному часі.</p>
+        <div style="display:flex;gap:14px;margin-top:20px">
+          <a class="btn primary" href="#quiz">Пройти квіз і отримати розрахунок</a>
+          <a class="btn ghost" href="#modules">Переглянути модулі</a>
+        </div>
+      </div>
+      <div class="hero-gallery">
+        <img src="img/action.jpg" alt="Сівалка з модулями Precision Planting" style="width:100%;height:320px;object-fit:cover" loading="eager" decoding="async">
+        <div class="grid cols-2">
+          <img src="img/closeup.jpg" alt="Робота сошників та очисників рядків" style="width:100%;height:120px;object-fit:cover" loading="lazy" decoding="async">
+          <img src="img/field.jpg" alt="Монтаж обладнання Precision Planting" style="width:100%;height:120px;object-fit:cover" loading="lazy" decoding="async">
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits (SECOND SECTION) -->
+  <section id="benefits" class="section" style="background:#fbfdfc">
+    <div class="container">
+      <h2 class="sec-title">Що дає модернізація</h2>
+      <p class="sec-sub">Основні вигоди від переобладнання під Precision Planting.</p>
+      <div class="benefits">
+        <div class="benefit"><div class="benefit-icon">✔</div><b>Точність висіву</b><span>Менше пропусків і двійників, стабільна густота по всьому полю.</span></div>
+        <div class="benefit"><div class="benefit-icon">$</div><b>Економія насіння</b><span>Відсічка рядків та оптимальні норми — заощадження до 15% на матеріалі.</span></div>
+        <div class="benefit"><div class="benefit-icon">⚙</div><b>Стабільна глибина</b><span>Контроль глибини для дружніх сходів і потенціалу врожайності.</span></div>
+        <div class="benefit"><div class="benefit-icon">📊</div><b>Аналітика</b><span>Дані про висів і карти врожайності для прийняття рішень.</span></div>
+        <div class="benefit"><div class="benefit-icon">🚜</div><b>Сумісність</b><span>Працюємо з John Deere, Great Plains, Kinze, Elvorti та іншими.</span></div>
+        <div class="benefit"><div class="benefit-icon">🔧</div><b>Швидкий монтаж</b><span>Акуратне встановлення й калібрування, підтримка в сезоні.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section id="modules" class="section" style="background:#fbfdfc;border-top:1px solid #e6eee9;border-bottom:1px solid #e6eee9">
+    <div class="container">
+      <h2 class="sec-title">Ключові модулі Precision Planting</h2>
+      <p class="sec-sub">Готові конфігурації під ваш бренд і кількість рядків.</p>
+      <div class="grid cols-3">
+        <article class="module">
+          <img src="img/closeup.jpg" alt="vDrive електропривід" loading="lazy" decoding="async">
+          <div class="body"><h3>vSet + vDrive</h3><p>Точне дозування і електропривід без ланцюгів.</p></div>
+        </article>
+        <article class="module">
+          <img src="img/action.jpg" alt="DeltaForce" loading="lazy" decoding="async">
+          <div class="body"><h3>DeltaForce</h3><p>Автоматичний тиск на сошник і стабільна глибина.</p></div>
+        </article>
+        <article class="module">
+          <img src="img/field.jpg" alt="FurrowForce" loading="lazy" decoding="async">
+          <div class="body"><h3>FurrowForce</h3><p>Якісне закриття борозни та дружні сходи.</p></div>
+        </article>
+        <article class="module">
+          <img src="img/closeup.jpg" alt="CleanSweep" loading="lazy" decoding="async">
+          <div class="body"><h3>CleanSweep</h3><p>Пневмоконтроль очисників рядка з кабіни.</p></div>
+        </article>
+        <article class="module">
+          <img src="img/action.jpg" alt="SmartDepth" loading="lazy" decoding="async">
+          <div class="body"><h3>SmartDepth</h3><p>Керування глибиною з кабіни та стабільне загортання.</p></div>
+        </article>
+        <article class="module">
+          <img src="img/field.jpg" alt="20|20 Monitor" loading="lazy" decoding="async">
+          <div class="body"><h3>20|20 Monitor</h3><p>Повний моніторинг і аналітика в реальному часі.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section">
+    <div class="container">
+      <h2 class="sec-title">Як ми працюємо</h2>
+      <p class="sec-sub">Від першого дзвінка до першого врожаю з модернізованою сівалкою.</p>
+      <div class="grid cols-2" style="align-items:center; gap:40px">
+        <div>
+          <div class="step"><div class="step-icon">1</div><div class="step-content"><b>Діагностика та консультація</b>Наші спеціалісти аналізують марку, кількість рядків та технічний стан вашої сівалки. Ви отримуєте рекомендації та попередній прорахунок.</div></div>
+          <div class="step"><div class="step-icon">2</div><div class="step-content"><b>Індивідуальний підбір модулів</b>Ми враховуємо культури, умови ґрунту, клімат і бюджет. Пропонуємо найбільш ефективну конфігурацію Precision Planting.</div></div>
+          <div class="step"><div class="step-icon">3</div><div class="step-content"><b>Монтаж і налаштування</b>Встановлюємо обладнання з точним калібруванням і тестуванням у полі. Система працює бездоганно з першого дня.</div></div>
+          <div class="step"><div class="step-icon">4</div><div class="step-content"><b>Навчання персоналу</b>Проводимо інструктаж для механізаторів і агрономів. Ви отримуєте практичні знання для роботи з усіма функціями.</div></div>
+          <div class="step"><div class="step-icon">5</div><div class="step-content"><b>Супровід у сезоні</b>Забезпечуємо технічну підтримку, аналіз даних та допомогу у налаштуваннях для максимальної ефективності.</div></div>
+          <div class="step"><div class="step-icon">6</div><div class="step-content"><b>Результат</b>Економія ресурсів, рівномірні сходи, стабільна глибина та зростання врожайності.</div></div>
+        </div>
+        <div>
+          <img src="img/closeup.jpg" alt="Процес монтажу" style="width:100%;height:400px;object-fit:cover;border-radius:12px" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiz -->
+  <section id="quiz" class="section" style="background:#fbfdfc">
+    <div class="container">
+      <h2 class="sec-title">Пройдіть квіз та отримайте індивідуальну конфігурацію та прорахунок</h2>
+      <p class="sec-sub">Відповіді допоможуть підібрати точну конфігурацію для вашої моделі.</p>
+      <div class="quiz" role="form">
+        <div class="progress" aria-hidden="true"><div id="bar" class="bar"></div></div>
+        <form id="quizForm" onsubmit="return false" aria-live="polite">
+          <section data-step="1" hidden>
+            <div class="grid cols-2">
+              <button class="btn-opt" data-value="John Deere">John Deere</button>
+              <button class="btn-opt" data-value="Great Plains">Great Plains</button>
+              <button class="btn-opt" data-value="Kinze">Kinze</button>
+              <button class="btn-opt" data-value="Kuhn">Kuhn</button>
+              <button class="btn-opt" data-value="Amazone / Horsch">Amazone / Horsch</button>
+              <button class="btn-opt" data-value="Elvorti Vega / VENZA / УПС">Elvorti Vega / VENZA / УПС</button>
+            </div>
+            <div class="field" style="margin-top:12px"><label class="label" for="brandOther">Інша марка / модель</label><input id="brandOther" class="input" type="text" placeholder="Вкажіть свою модель (необов’язково)" /></div>
+            <div class="quiz-actions"><a class="btn primary" data-next>Далі</a></div>
+          </section>
+          <section data-step="2" hidden>
+            <div class="grid cols-3">
+              <button class="btn-opt" data-value="6">6 рядків</button>
+              <button class="btn-opt" data-value="8">8 рядків</button>
+              <button class="btn-opt" data-value="12">12 рядків</button>
+              <button class="btn-opt" data-value="16">16 рядків</button>
+              <button class="btn-opt" data-value="24">24 рядки</button>
+            </div>
+            <div class="field" style="margin-top:12px"><label class="label" for="rowsOther">Інша кількість</label><input id="rowsOther" class="input" type="number" inputmode="numeric" placeholder="Напр., 18" min="1" /></div>
+            <div class="quiz-actions"><a class="btn ghost" data-prev>Назад</a><a class="btn primary" data-next>Далі</a></div>
+          </section>
+          <section data-step="3" hidden>
+            <div id="features">
+              <span class="chip" role="checkbox" aria-checked="false" tabindex="0">Точний висів без пропусків і двійників</span>
+              <span class="chip" role="checkbox" aria-checked="false" tabindex="0">Контроль глибини висіву</span>
+              <span class="chip" role="checkbox" aria-checked="false" tabindex="0">Автоматична відсічка рядків</span>
+              <span class="chip" role="checkbox" aria-checked="false" tabindex="0">Внесення добрив під час висіву</span>
+              <span class="chip" role="checkbox" aria-checked="false" tabindex="0">Аналіз даних та карти врожайності</span>
+            </div>
+            <div class="quiz-actions"><a class="btn ghost" data-prev>Назад</a><a class="btn primary" data-next>Далі</a></div>
+          </section>
+          <section data-step="4" hidden>
+            <div class="field"><label class="label" for="farm">Назва господарства / компанії</label><input id="farm" class="input" type="text" placeholder="Напр., ФГ «Зелена Нива»" /></div>
+            <div class="quiz-actions"><a class="btn ghost" data-prev>Назад</a><a class="btn primary" data-next>Далі</a></div>
+          </section>
+          <section data-step="5" hidden>
+            <div class="grid cols-2">
+              <div class="field"><label class="label" for="name">Ім’я *</label><input id="name" class="input" required placeholder="Ваше ім’я" /></div>
+              <div class="field"><label class="label" for="phone">Телефон *</label><input id="phone" class="input" required placeholder="+380…" /></div>
+            </div>
+            <div class="field"><label class="label" for="email">Email *</label><input id="email" class="input" type="email" required placeholder="name@example.com" /></div>
+            <div class="field"><label class="label" for="messenger">Зручний канал зв’язку</label>
+              <select id="messenger" class="select"><option value="">Неважливо</option><option>Viber</option><option>Telegram</option><option>Телефонний дзвінок</option></select>
+            </div>
+            <p class="sec-sub" style="margin:8px 0 0">Натискаючи «Отримати прорахунок», ви погоджуєтесь із обробкою персональних даних.</p>
+            <div class="quiz-actions"><a class="btn ghost" data-prev>Назад</a><a id="submitBtn" class="btn primary">Отримати прорахунок</a></div>
+          </section>
+          <section data-step="6" hidden>
+            <div class="module" style="border-color:#d9f3e6;background:#f1fbf5"><div class="body"><b>✅ Запит надіслано</b><br>Дякуємо за проходження квізу. Ми підготуємо персональний розрахунок і зв’яжемось з вами.</div></div>
+            <div style="display:flex;gap:12px;margin-top:14px"><a class="btn ghost" href="#modules">Повернутись до модулів</a><a class="btn primary" href="#">Завантажити каталог (PDF)</a></div>
+          </section>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section id="cases" class="section" style="background:#fff">
+    <div class="container">
+      <h2 class="sec-title">Приклади реалізацій</h2>
+      <p class="sec-sub">Фото та короткий опис виконаних переобладнань.</p>
+      <div class="grid cols-3">
+        <article class="case">
+          <img src="img/closeup.jpg" alt="Case 1" loading="lazy" decoding="async">
+          <h3>John Deere, 16 р.</h3>
+          <p>vSet + vDrive, DeltaForce, 20|20. Економія насіння ~12%.</p>
+        </article>
+        <article class="case">
+          <img src="img/action.jpg" alt="Case 2" loading="lazy" decoding="async">
+          <h3>Elvorti Vega, 8 р.</h3>
+          <p>Відсічка секцій, аналітика, стабільна глибина.</p>
+        </article>
+        <article class="case">
+          <img src="img/field.jpg" alt="Case 3" loading="lazy" decoding="async">
+          <h3>Great Plains, 12 р.</h3>
+          <p>Повний пакет модернізації, навчання оператора.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts -->
+  <section id="contacts" class="section">
+    <div class="container two-col">
+      <div>
+        <h2 class="sec-title">Залишились питання?</h2>
+        <p class="sec-sub">Напишіть нам у зручний месенджер або залиште заявку.</p>
+        <ul class="list" style="margin-top:8px; padding-left:18px">
+          <li>📞 +38 (0XX) XXX-XX-XX</li>
+          <li>✉️ info@yourdomain.ua</li>
+          <li>📍 Україна / ЄС</li>
+        </ul>
+        <div style="margin-top:20px; display:flex; gap:16px">
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="" style="width:28px;height:28px; filter:hue-rotate(80deg) saturate(2) brightness(0.9)"></a>
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="" style="width:28px;height:28px; filter:hue-rotate(80deg) saturate(2) brightness(0.9)"></a>
+          <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046125.png" alt="" style="width:28px;height:28px; filter:hue-rotate(80deg) saturate(2) brightness(0.9)"></a>
+          <a href="https://youtube.com" target="_blank" aria-label="YouTube"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="" style="width:28px;height:28px; filter:hue-rotate(80deg) saturate(2) brightness(0.9)"></a>
+        </div>
+      </div>
+      <div id="contactCard" class="card">
+        <form onsubmit="event.preventDefault(); alert('Заявку надіслано!')">
+          <div class="grid cols-2">
+            <div class="field"><label class="label">Ім’я</label><input class="input" required></div>
+            <div class="field"><label class="label">Телефон</label><input class="input" required></div>
+          </div>
+          <div class="field"><label class="label">Коментар</label><textarea class="input" rows="3" placeholder="Коротко опишіть задачу"></textarea></div>
+          <button class="btn primary" style="margin-top:14px">Надіслати</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px"><div class="logo">PP</div> <b>Precision Planting — Retrofit</b></div>
+      <div style="font-size:13px">© 2025. Усі права захищено.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Helpers
+    const $=(q,ctx=document)=>ctx.querySelector(q); const $$=(q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
+
+    // Quiz
+    const sections=$$('#quizForm section');
+    const stepNumbers=sections.map(s=>Number(s.dataset.step)).filter(n=>!Number.isNaN(n));
+    const minStep=Math.min(...stepNumbers); const maxStep=Math.max(...stepNumbers);
+    const state={step:minStep,data:{}};
+    function getSection(i){return $(`#quizForm section[data-step="${i}"]`);}    
+    function setStep(i){
+      const next=Math.max(minStep, Math.min(maxStep, i));
+      sections.forEach(s=>{ s.hidden=true; });
+      const target=getSection(next);
+      if(target){ target.hidden=false; state.step=next; }
+      const denom=(maxStep-minStep)||1; 
+      const barEl=$('#bar'); if(barEl){ barEl.style.width=((state.step-minStep)/denom*100)+'%'; }
+    }
+
+    $$('#quizForm [data-next]').forEach(b=>b.addEventListener('click',()=>setStep(state.step+1)));
+    $$('#quizForm [data-prev]').forEach(b=>b.addEventListener('click',()=>setStep(state.step-1)));
+
+    $$('section[data-step="1"] .btn-opt').forEach(b=>b.addEventListener('click',e=>{e.preventDefault(); state.data.brand=b.dataset.value; setStep(2);}));
+    $$('section[data-step="2"] .btn-opt').forEach(b=>b.addEventListener('click',e=>{e.preventDefault(); state.data.rows=b.dataset.value; setStep(3);}));
+
+    $$('#features .chip').forEach(ch=>{
+      ch.addEventListener('click',()=>{ ch.classList.toggle('active'); ch.setAttribute('aria-checked', ch.classList.contains('active')?'true':'false'); });
+      ch.addEventListener('keydown',e=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); ch.click(); } });
+    });
+
+    const submitBtn=$('#submitBtn');
+    if(submitBtn){
+      submitBtn.addEventListener('click',e=>{
+        e.preventDefault();
+        const name=$('#name')?.value?.trim();
+        const phone=$('#phone')?.value?.trim();
+        const email=$('#email')?.value?.trim();
+        if(!name||!phone||!email){ alert('Будь ласка, заповніть Ім’я, Телефон та Email.'); return; }
+        setStep(maxStep);
+      });
+    }
+
+    // Self-tests
+    function assert(c,m){ c?console.log('✓',m):console.error('✗',m) }
+    assert($('#quizForm')!==null,'#quizForm існує');
+    assert(sections.length>0,'Є принаймні один крок у квізі');
+    assert(getSection(minStep)!==null,'Перший крок існує');
+    const uniqueSteps=new Set(stepNumbers); assert(uniqueSteps.size===stepNumbers.length,'Кроки унікальні');
+    assert(minStep===1,'Квіз починається з кроку 1');
+    assert(getSection(1).querySelector('[data-prev]')===null,'На кроці 1 немає кнопки Назад');
+
+    setStep(minStep);
+  </script>
+</body>
+</html>
